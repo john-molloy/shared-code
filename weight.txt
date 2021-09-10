@@ -1,0 +1,106 @@
+Date	Day	Weight	MovAvg	Fudge
+29 May 2021	Sat			
+30 May 2021	Sun			
+31 May 2021	Mon			
+01 Jun 2021	Tue			
+02 Jun 2021	Wed			
+03 Jun 2021	Thu			
+04 Jun 2021	Fri	66.6	66.6	
+05 Jun 2021	Sat	67.4	67.0	
+06 Jun 2021	Sun	67.4	67.1	
+07 Jun 2021	Mon	67.2	67.2	
+08 Jun 2021	Tue	66.6	67.0	
+09 Jun 2021	Wed	67.0	67.0	
+10 Jun 2021	Thu	66.3	66.9	
+11 Jun 2021	Fri	66.8	67.0	
+12 Jun 2021	Sat	66.8	66.9	
+13 Jun 2021	Sun	66.8	66.8	Y
+14 Jun 2021	Mon	66.8	66.7	
+15 Jun 2021	Tue	66.2	66.7	
+16 Jun 2021	Wed	66.2	66.6	
+17 Jun 2021	Thu	65.9	66.5	
+18 Jun 2021	Fri	66.1	66.4	
+19 Jun 2021	Sat	66.3	66.3	
+20 Jun 2021	Sun	66.3	66.3	Y
+21 Jun 2021	Mon	66.3	66.2	
+22 Jun 2021	Tue	65.9	66.1	
+23 Jun 2021	Wed	66.0	66.1	
+24 Jun 2021	Thu	65.5	66.1	
+25 Jun 2021	Fri	66.2	66.1	
+26 Jun 2021	Sat	66.0	66.0	
+27 Jun 2021	Sun	66.2	66.0	Y
+28 Jun 2021	Mon	66.3	66.0	
+29 Jun 2021	Tue	66.0	66.0	
+30 Jun 2021	Wed	65.8	66.0	
+01 Jul 2021	Thu	66.3	66.1	Y
+02 Jul 2021	Fri	66.7	66.2	
+03 Jul 2021	Sat	66.4	66.2	Y
+04 Jul 2021	Sun	66.2	66.2	
+05 Jul 2021	Mon	66.3	66.2	
+06 Jul 2021	Tue	66.0	66.2	
+07 Jul 2021	Wed	65.8	66.2	
+08 Jul 2021	Thu	66.0	66.2	
+09 Jul 2021	Fri	65.7	66.1	
+10 Jul 2021	Sat	66.4	66.1	
+11 Jul 2021	Sun	66.2	66.1	
+12 Jul 2021	Mon	65.6	66.0	
+13 Jul 2021	Tue	66.2	66.0	
+14 Jul 2021	Wed	66.4	66.1	
+15 Jul 2021	Thu	65.9	66.1	
+16 Jul 2021	Fri	65.8	66.1	
+17 Jul 2021	Sat	65.6	66.0	Y
+18 Jul 2021	Sun	65.4	65.8	
+19 Jul 2021	Mon	65.0	65.8	
+20 Jul 2021	Tue	66.0	65.7	
+21 Jul 2021	Wed	66.2	65.7	
+22 Jul 2021	Thu	65.6	65.7	
+23 Jul 2021	Fri	65.6	65.6	
+24 Jul 2021	Sat	65.8	65.7	
+25 Jul 2021	Sun	65.5	65.7	
+26 Jul 2021	Mon	65.5	65.7	
+27 Jul 2021	Tue	65.2	65.6	
+28 Jul 2021	Wed	65.4	65.5	
+29 Jul 2021	Thu	65.4	65.5	
+30 Jul 2021	Fri	65.1	65.4	
+31 Jul 2021	Sat	65.4	65.4	
+01 Aug 2021	Sun	65.5	65.4	Y
+02 Aug 2021	Mon	65.6	65.4	
+03 Aug 2021	Tue	65.8	65.5	
+04 Aug 2021	Wed	65.3	65.4	
+05 Aug 2021	Thu	65.3	65.4	
+06 Aug 2021	Fri	65.3	65.5	
+07 Aug 2021	Sat	66.4	65.6	
+08 Aug 2021	Sun	66.1	65.7	Y
+09 Aug 2021	Mon	65.8	65.7	
+10 Aug 2021	Tue	65.8	65.7	
+11 Aug 2021	Wed	65.9	65.8	
+12 Aug 2021	Thu	65.8	65.9	
+13 Aug 2021	Fri	66.0	66.0	
+14 Aug 2021	Sat	66.0	65.9	Y
+15 Aug 2021	Sun	66.0	65.9	
+16 Aug 2021	Mon	65.7	65.9	Y
+17 Aug 2021	Tue	65.3	65.8	
+18 Aug 2021	Wed	66.3	65.9	Y
+19 Aug 2021	Thu	66.3	65.9	Y
+20 Aug 2021	Fri	66.3	66.0	Y
+21 Aug 2021	Sat	66.3	66.0	Y
+22 Aug 2021	Sun	66.3	66.1	Y
+23 Aug 2021	Mon	66.3	66.2	Y
+24 Aug 2021	Tue	66.3	66.3	Y
+25 Aug 2021	Wed	66.3	66.3	Y
+26 Aug 2021	Thu	66.3	66.3	Y
+27 Aug 2021	Fri	66.3	66.3	Y
+28 Aug 2021	Sat	66.3	66.3	Y
+29 Aug 2021	Sun	66.3	66.3	Y
+30 Aug 2021	Mon	66.3	66.3	Y
+31 Aug 2021	Tue	66.3	66.3	Y
+01 Sep 2021	Wed	66.3	66.3	Y
+02 Sep 2021	Thu	67.2	66.4	
+03 Sep 2021	Fri	67.0	66.5	
+04 Sep 2021	Sat	66.8	66.6	
+05 Sep 2021	Sun	66.9	66.7	
+06 Sep 2021	Mon	66.4	66.7	
+07 Sep 2021	Tue	66.4	66.7	
+08 Sep 2021	Wed	66.8	66.8	
+09 Sep 2021	Thu	66.7	66.7	
+10 Sep 2021	Fri	66.6	66.7	
