@@ -1058,6 +1058,75 @@ with pd.ExcelWriter(os.path.join(params['outputs'], 'workbook.xlsx')) as writer:
     df2.to_excel(writer, sheet_name="sheet_df2", merge_cells=False)
 
 
+#%% Convert to 1, 0 indicators
+
+df = pd.DataFrame()
+df['a'] = [1, 2, np.nan, 4]
+df['b'] = ['a', np.nan, 'c', 'd']
+print(df)
+df = df.notnull().astype('int')
+print("")
+print(df)
+
+
+#%% A repeat of an earlier cell, clearer.
+
+df1 = pd.DataFrame({'c1': [1, 2, 3], 'c2': ['a', 'b', 'c']})
+df2 = pd.DataFrame({'c1': [10, 20, 30], 'c2': ['aa', 'bb', 'cc']})
+
+# merge_cells may come in useful for pivots.
+#df3 = pd.DataFrame({'c1': list('aaabbc'), 'c2': range(6)})
+#df3.pivot()
+
+with pd.ExcelWriter(os.path.join(r'C:\Users\JMolloy\Documents\scratch\python', 'test_ExcelWriter.xlsx')) as writer:
+    df1.to_excel(writer, sheet_name="sheet_df1", merge_cells=True)
+    df2.to_excel(writer, sheet_name="sheet_df2", merge_cells=False, index=False)
+
+
+#%% pd.apply() again.
+
+q = binned.copy()
+print(q)
+print(q.columns)
+
+q['PreviousRole'] + '_' + q['label']
+q['PreviousRole'] + '_' + "{0}".format(q['bin'])
+
+q.apply(lambda row: "{0}".format(row['bin']), axis=1)
+
+
+#%% Concatenate DataFrames.
+
+q0 = pd.DataFrame()
+
+q1 = pd.DataFrame({'c1': list("abcd"), 'c2': list("1234")})
+q0 = pd.concat([q0, q1])
+# q0 = pd.concat([q0, q1], axis=0)
+
+q1 = pd.DataFrame({'c1': list("xyz"), 'c2': list("789")})
+q0 = pd.concat([q0, q1])
+# q0 = pd.concat([q0, q1], axis=0)
+
+
+#%% Sorting with NaN, None, etc.
+
+df = pd.DataFrame({
+        'c1': [  1,     2,       2,    3,       4,     4,    5],
+        'c2': [1.0,   2.0,  np.nan,  3.0,  np.nan,   4.0,  5.0],
+        'c3': ['a',  None,     'b',  'c',     'd',  None,  'e']
+    })
+
+print("\nOriginal")
+print(df)
+
+df = df.sort_values(by=['c1', 'c2', 'c3'])
+print("\nSorted")
+print(df)
+
+df = df.drop_duplicates()
+print("\nDrop duplicates")
+print(df)
+
 
 #%%
 # End Of File
