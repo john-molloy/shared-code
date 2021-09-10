@@ -1123,7 +1123,7 @@ df = df.sort_values(by=['c1', 'c2', 'c3'])
 print("\nSorted")
 print(df)
 
-df = df.drop_duplicates()
+df = df.drop_duplicates(subset='c1', keep='first')
 print("\nDrop duplicates")
 print(df)
 
