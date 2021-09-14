@@ -1128,6 +1128,79 @@ print("\nDrop duplicates")
 print(df)
 
 
+# %%
+f, ax = plt.subplots(figsize=(14, 8))
+#sns.set_theme(style="whitegrid")
+sns.boxplot(y="Decile", x="Income", data=dfdata)
+plt.title('Boxplot',size=16)
+plt.savefig('boxplot.png',format='png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# %%
+f, ax = plt.subplots(figsize=(14, 8))
+#sns.set_theme(style="whitegrid")
+sns.violinplot(x="Decile", y="Income", data=dfdata)
+plt.title('violin plot',size=16)
+plt.savefig('violinplot.png', format='png', dpi=300, bbox_inches='tight')
+plt.show()
+
+
+#%%
+
+date_string = "2012-12-12 10:10:10"
+print (datetime.datetime.fromisoformat(date_string))
+# 2012-12-12 10:10:10
+
+date_string = "1900-01-01 00:00:00"
+print (datetime.datetime.fromisoformat(date_string))
+
+print(datetime.datetime.fromisoformat('1900-01-01 00:00:00'))
+
+
+#%% Remoing outliers
+# https://www.askpython.com/python/examples/detection-removal-outliers-in-python
+# Uses the definition of an outlier of 1.5 times interquartile range.
+
+def average_gift(x):
+    if sum(x > 0) == 0:
+        return np.nan
+    else:
+        return sum(x) / sum(x > 0)
+
+def average_gift_excl_upper_outliers(x):
+    q75, q25 = np.percentile(x, [75, 25])
+    intr_qr = q75 - q25
+    vmax = q75 + (1.5 * intr_qr)
+    # vmin = q25 - (1.5 * intr_qr)
+    x = x[x <= vmax]
+    if sum(x > 0) == 0:
+        return np.nan
+    else:
+        return sum(x) / sum(x > 0)
+
+x = np.array([0] * 20 + [1] * 35 + [2] * 35 + [100] * 100000)
+
+print(average_gift(x))
+print(average_gift_excl_upper_outliers(x))
+
+
+#%%
+
+x = np.array([0] * 2000 + [1] * 35 + [2] * 35 + [100] * 10)
+dftmp = pd.DataFrame({'Income': x})
+
+print(np.percentile(x, [75, 25]))
+print(dftmp.quantile(q=[0.25, 0.75], axis=0))
+
+
+#%%
+
+q = dftmp.quantile(q=[0.25, 0.75], axis=0)
+q25 = float(q.iloc[0])
+q75 = float(q.iloc[1])
+print(q25, q75)
+
+
 #%%
 # End Of File
 #
