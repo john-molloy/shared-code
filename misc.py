@@ -1546,6 +1546,9 @@ for i in range(0, len(id_list), nblock):
 #
 
 # function for calculating the t-test for two independent samples
+#
+# WARNING! This assumes equal variance.
+#
 def independent_ttest(data1, data2, alpha):
 	# calculate means
 	mean1, mean2 = mean(data1), mean(data2)
