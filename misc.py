@@ -1628,9 +1628,76 @@ print("scipy\n  t_stat: {0}\n  p: {1}".format(ttest_res_2[0], ttest_res_2[1]))
 
 
 
+#%% t-test comparisons again
+#
+# https://machinelearningmastery.com/how-to-code-the-students-t-test-from-scratch-in-python/
+# Does this implemented function assume equal variances?
+#
+
+from scipy.stats.stats import ttest_ind
+
+from math import sqrt
+from numpy import mean
+from scipy.stats import sem
+from scipy.stats import t
+
+# function for calculating the t-test for two independent samples
+def independent_ttest(data1, data2, alpha):
+	# calculate means
+	mean1, mean2 = mean(data1), mean(data2)
+	# calculate standard errors
+	se1, se2 = sem(data1), sem(data2)
+	# standard error on the difference between the samples
+	sed = sqrt(se1**2.0 + se2**2.0)
+	# calculate the t statistic
+	t_stat = (mean1 - mean2) / sed
+	# degrees of freedom
+	df = len(data1) + len(data2) - 2
+	# calculate the critical value
+	cv = t.ppf(1.0 - alpha, df)
+	# calculate the p-value
+	p = (1.0 - t.cdf(abs(t_stat), df)) * 2.0
+	# return everything
+	return t_stat, df, cv, p
 
 
+# Datsets 31, 32 and 33 are examples 1, 2 and 3 from here.
+# https://en.wikipedia.org/wiki/Welch%27s_t-test
+# According to these results, independent_ttest() is
+# neither one nor the other.
+# Here is a comment from the website: "Welch's t-test and
+# Student's t-test gave identical results when the two
+# samples have identical variances and sample sizes (Example 1)."
 
+dataset = 33
+
+if dataset == 1:
+    data1 = [150.0, 192.0, 760.0, 1554.0, 1615.0, 1666.0]
+    data2 = [10.0, 40.0, 140.0, 713.0, 870.0, 2620.0]
+elif dataset == 2:
+    np.random.seed(1)
+    data1 = 5 * np.random.randn(100) + 50
+    data2 = 5 * np.random.randn(100) + 51
+elif dataset == 31:
+    data1 = [27.5,21.0,19.0,23.6,17.0,17.9,16.9,20.1,21.9,22.6,23.1,19.6,19.0,21.7,21.4]
+    data2 = [27.1,22.0,20.8,23.4,23.4,23.5,25.8,22.0,24.8,20.2,21.9,22.1,22.9,20.5,24.4]
+elif dataset == 32:
+    data1 = [17.2,20.9,22.6,18.1,21.7,21.4,23.5,24.2,14.7,21.8]
+    data2 = [21.5,22.8,21.0,23.0,21.6,23.6,22.5,20.7,23.4,21.8,20.7,21.7,21.5,22.5,23.6,21.5,22.5,23.5,21.5,21.8]
+elif dataset == 33:
+    data1 = [19.8,20.4,19.6,17.8,18.5,18.9,18.3,18.9,19.5,22.0]
+    data2 = [28.2,26.6,20.1,23.3,25.2,22.1,17.7,27.6,20.6,13.7,23.2,17.5,20.6,18.0,23.9,21.6,24.3,20.4,24.0,13.2]
+else:
+    raise Exception("Unknown dataset")
+
+t_stat, p = ttest_ind(data1, data2, equal_var=False)
+print('sci_not_eq: t=%.10f, p=%.10f' % (t_stat, p))
+
+t_stat, p = ttest_ind(data1, data2)
+print('sci_eq:     t=%.10f, p=%.10f' % (t_stat, p))
+
+t_stat, df, cv, p = independent_ttest(data1, data2, 0.05)
+print('mlm:        t=%.10f, p=%.10f' % (t_stat, p))
 
 #%%
 # End Of File
