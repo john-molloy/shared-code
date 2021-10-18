@@ -1201,6 +1201,434 @@ q75 = float(q.iloc[1])
 print(q25, q75)
 
 
+
+
+#%% Keep. Where exactly are the interquartile boundaries?
+
+n = 10000
+q = np.concatenate((
+    np.random.uniform( 5, 20, n),
+    np.random.uniform(30, 45, n),
+    np.random.uniform(55, 70, n),
+    np.random.uniform(80, 95, n)))
+print(np.percentile(q, [25, 50, 75]))
+
+#q = np.array([12.5, 37.5, 62.5, 87.5])
+#print(np.percentile(q, [25, 50, 75]))
+
+
+#%% Keep
+
+np.where([True, False, False, True], 'T', 'F')
+np.where([True, False, False, True], [10, 20, 30, 40], [1, 2, 3, 4])
+np.where([True, False, False, True], [1, 2, 3, 4], 999)
+np.where([True, False, False, True], 999, [1, 2, 3, 4])
+np.where([True, False, False, True], 999, [True, False, False, True])
+np.where([True, False, False, True], [True, False, False, True], 999)
+np.where([True, False, False, True], 'TRUE', ['T', 'F', 'F', 'T'])
+
+
+#%% Keep.  Is a value in one set in another set?  Featuring the index.
+
+d = {}
+d['i'] = [10, 20, 30, 40]
+d['v'] = [10, 20, 30, 40]
+d['p'] = ['a', 'b', 'c', 'd']
+df1 = pd.DataFrame(d)
+df1 = df1.set_index('i')
+
+d = {}
+d['v'] = [10, 30, 60]
+d['p'] = ['aa', 'cc', 'ff']
+df2 = pd.DataFrame(d)
+
+df1['is_it_in_df2_1'] = np.where(df1.index.isin(df2['v']), 'In', 'Out')
+df1['is_it_in_df2_2'] = np.where(df1['v'].isin(df2['v']), 'In', 'Out')
+
+print("\ndf1")
+print(df1)
+print("\ndf2")
+print(df2)
+
+del d, df1, df2
+
+
+#%%
+
+d = {}
+d['i']  = [10, 20, 30, 40]
+d['c1'] = [0, 0, 1, 1]
+d['c2'] = [0, 1, 0, 1]
+df = pd.DataFrame(d)
+print(df)
+
+df.loc[:, ['c1', 'c2']]
+df.loc[:, ['c1', 'c2']].eq(1)
+df.loc[:, ['c1', 'c2']].eq(1).any(1)
+np.where(df.loc[:, ['c1', 'c2']].eq(1).any(1), 1, 0)
+
+del d, df
+
+
+#%% df itself is changed.
+
+def func(x):
+    x[:] = 999
+    x['new'] = 555
+    #x['b'] = 222
+
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+print(df)
+
+# Column 'new' is added.
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+func(df)
+print(df)
+
+# Column 'new' is not added.
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+func(df['a'])
+print(df)
+
+del df, func
+
+
+#%% Does df change?  Apparently not.
+
+def func(x):
+    x = x[x > 2]
+    print(x)
+
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+print(df)
+
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+func(df)
+print(df)
+
+df = pd.DataFrame({'a': [1, 2, 3], 'b': [10, 20, 30]})
+func(df['a'])
+print(df)
+
+del df, func
+
+
+#%%
+# https://stackoverflow.com/questions/38895768/python-pandas-dataframe-is-it-pass-by-value-or-pass-by-reference
+
+def letgo1(df):
+    # The caller's df IS NOT changed.
+    df = df.drop('b', axis=1)
+
+def letgo2(df):
+    # The caller's df IS changed.
+    df.drop('b', axis=1, inplace=True)
+
+def letgo3(x):
+    # The caller's x IS changed.
+    x[1, 1] = 100
+
+def letgo4(x):
+    # The caller's df IS NOT changed.
+    x = np.array([[3, 3], [3, 3]])
+
+a1 = pd.DataFrame({'a':[1, 2], 'b':[3, 4]})
+a2 = pd.DataFrame({'a':[1, 2], 'b':[3, 4]})
+a3 = np.array([[1, 2], [3, 4]])
+a4 = np.array([[1, 2], [3, 4]])
+
+print(a1)
+letgo1(a1)
+print(a1)
+
+print(a2)
+letgo2(a2)
+print(a2)
+
+print(a3)
+letgo3(a3)
+print(a3)
+
+print(a4)
+letgo4(a4)
+print(a4)
+
+
+#%% qwqwqw
+
+def read_brief_excel(fname):
+    df = pd.read_excel(
+        fname,
+        sheet_name = "Sheet1",
+        header = 1
+        ).drop(columns=['Unnamed: 0'])
+    df = df[df['SegNum'] != 'Totals']
+    return df
+
+#%% Ione - Cash Evaluation
+
+INPUT_DIR = "code\\data\\"
+OUTPUT_DIR = "code\\outputs\\"
+
+briefs_df = pd.DataFrame()
+
+with os.scandir(os.path.join(INPUT_DIR, 'source')) as entries:
+    for entry in entries:
+        if entry.is_file() and entry.name.endswith('xlsx'):
+            print(entry.name)
+            new_brief_df = read_brief_excel(entry)
+            briefs_df = briefs_df.append(new_brief_df)
+
+briefs_df = briefs_df.dropna(subset = ['SCodes'])
+
+briefs_df.to_csv(
+    os.path.join(INPUT_DIR,'datad.csv'), index=False)
+
+
+#%%
+
+import seaborn as sns
+
+dftmp['years'] = dftmp['period'] / 365
+
+plot_order_2 = ['Enq', 'Ple', 'Rej']
+
+plot_data = []
+plot_data.append(('dnu', dftmp, plot_order_2))
+
+for k in plot_data:
+
+    plot_title = "Time to become"
+
+    #ffn = os.path.join(params['path_figures'], '{0}_boxplot_a_{1}.png'.format(params['timestamp'], k[0]))
+    f, ax = plt.subplots(figsize=(14, 8))
+    sns.boxplot(y='PreviousRole', x='years', data=k[1], order=k[2])
+    plt.title(plot_title, size=16)
+    #plt.savefig(ffn, format='png', dpi=300, bbox_inches='tight')
+    plt.show()
+
+    #ffn = os.path.join(params['path_figures'], '{0}_violinplot_a_{1}.png'.format(params['timestamp'], k[0]))
+    f, ax = plt.subplots(figsize=(14, 8))
+    sns.violinplot(y='PreviousRole', x='years', data=k[1], order=k[2])
+    plt.title(plot_title, size=16)
+    #plt.savefig(ffn, format='png', dpi=300, bbox_inches='tight')
+    plt.show()
+
+del k, ax, plot_data, plot_title
+
+
+#%% Find records appearing more than once.
+
+dftmp1 = dfconv.copy()
+dftmp2 = dftmp1.groupby('ID')[['ID']].count()
+dftmp2.columns = ['count']
+dftmp2 = dftmp2.reset_index()
+dftmp2 = dftmp2[dftmp2['count'] > 1]
+dftmp3 = dftmp1[dftmp1['ID'].isin(dftmp2['ID'])]
+dftmp3 = dftmp3.sort_values(by=['ID', 'Date'], ascending=[True, False]).reset_index(drop=True)
+
+
+#%% Convert a list into a DataFrame.
+
+df = []
+for var in isproducts:
+    df.append(data[var].value_counts())
+df = pd.concat(df, axis = 1)
+
+
+#%% Convert discrete variables to categories
+
+for var in d_vars:
+    cat_type = CategoricalDtype(categories = sorted(data[var].unique()), ordered = True)
+    data[var] = data[var].astype(cat_type)
+
+
+#%%
+
+import sqlalchemy as db
+
+legator_list = []
+
+
+# Example 1
+
+engine = db.create_engine('mssql+pyodbc://@ServerName/DatabaseName?driver=ODBC+Driver+17+for+SQL+Server')
+connection = engine.connect()
+metadata = db.MetaData()
+event_table = db.Table('TableName', metadata, autoload=True, autoload_with=engine)
+event_output = pd.DataFrame()
+
+nblock = 1000
+for i in range(0, len(id_list), nblock):
+    data_pull = db.select(
+                    [event_table.columns.ID, event_table.columns.Description]
+                ).where(event_table.columns.ID.in_(id_list[i:(i+nblock)]))
+    ResultProxy = connection.execute(data_pull)
+    event = pd.DataFrame(ResultProxy.fetchall())
+    event.columns = ['ID', 'Description']
+    event_output = pd.concat([event_output, event], ignore_index=True)
+    print('{0}/{1} The list is {2} entries long'.format(i, len(id_list), len(event_output)))
+
+
+# Example 2
+
+engine = db.create_engine('mssql+pyodbc://@ServerName/DatabaseName?driver=ODBC+Driver+17+for+SQL+Server')
+connection = engine.connect()
+metadata = db.MetaData()
+Income_table = db.Table('TableName', metadata, autoload=True, autoload_with=engine)
+income_output = pd.DataFrame()
+
+nblock = 1000
+for i in range(0, len(id_list), nblock):
+    data_pull = db.select(
+                    [Income_table.columns.ID,
+                     db.func.sum(Income_table.columns.Income).label('Income')
+                    ]
+                ).where(
+                    db.and_(
+                        Income_table.columns.ID.in_(id_list[i:(i+nblock)]),
+                        Income_table.columns.Department != 'ADepartment'
+                    )
+                ).group_by(Income_table.columns.ID)
+
+    ResultProxy = connection.execute(data_pull)
+    income = pd.DataFrame(ResultProxy.fetchall())
+    income.columns = ['ID', 'Income']
+    income_output = pd.concat([income_output, income], ignore_index=True)
+    print('The list is {0} entries long'.format(len(income_output)))
+
+
+# Example 3
+
+server = 'ServerName'
+database = 'DatabaseName'
+engine = create_engine(
+    f'mssql+pyodbc://@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server')
+con = engine.connect()
+
+# Store the dataframes in a list
+data = []
+
+# Set a limit of 20000 on the SMSIDs per query to stop errors
+for i in range(0, len(id_list), 20000):
+    eventNew = pd.read_sql(
+        f'''
+        SELECT E.mcs_name AS "OldRef",
+	               C.mcs_customerreference AS "CurrentRef",
+	               D.Mcs_SMSID AS "OldID",
+	               C.mcs_smsid AS "CurrentID",
+        	   {columnString}
+        FROM dbo.Table1 AS E
+        INNER JOIN dbo.Table2 AS C ON E.mcs_customerid = C.CONTACTID
+        INNER JOIN dbo.Table2 AS D ON E.mcs_name = D.Mcs_CustomerReference
+        WHERE col1 = 'Ref' AND E.ID IN ({str(id_list[i:(i + 20000)])[1:-1]})
+        ''',
+        con=con)
+    data.append(eventNew)
+
+con.close()
+
+# Concatenate the dataframes
+df = pd.concat(data, ignore_index=True)
+
+
+#%% test
+
+id_list = [i for i in range(10, 30)]
+
+nblock = 6
+for i in range(0, len(id_list), nblock):
+    print(id_list[i:(i+nblock)])
+
+
+#%% t-test
+# https://machinelearningmastery.com/how-to-code-the-students-t-test-from-scratch-in-python/
+#
+
+# function for calculating the t-test for two independent samples
+def independent_ttest(data1, data2, alpha):
+	# calculate means
+	mean1, mean2 = mean(data1), mean(data2)
+	# calculate standard errors
+	se1, se2 = sem(data1), sem(data2)
+	# standard error on the difference between the samples
+	sed = sqrt(se1**2.0 + se2**2.0)
+	# calculate the t statistic
+	t_stat = (mean1 - mean2) / sed
+	# degrees of freedom
+	df = len(data1) + len(data2) - 2
+	# calculate the critical value
+	cv = t.ppf(1.0 - alpha, df)
+	# calculate the p-value
+	p = (1.0 - t.cdf(abs(t_stat), df)) * 2.0
+	# return everything
+	return t_stat, df, cv, p
+
+# JM: Tweaked
+def ttest_v2(data1, data2, alpha):
+    # calculate means
+    mean1, mean2 = np.mean(data1), np.mean(data2)
+    # calculate standard errors
+    se1, se2 = sem(data1), sem(data2)
+    # standard error on the difference between the samples
+    sed = sqrt(se1**2.0 + se2**2.0)
+    # calculate the t statistic
+    # jm: use try/except as sed can be zero in some cases.
+    try:
+        t_stat = (mean1 - mean2) / sed
+    except:
+        t_stat = np.nan
+    # degrees of freedom
+    df = len(data1) + len(data2) - 2
+    # calculate the critical value
+    cv = t.ppf(1.0 - alpha, df)
+    # calculate the p-value
+    p = (1.0 - t.cdf(abs(t_stat), df)) * 2.0
+    # return everything
+    #return t_stat, df, cv, p
+    return t_stat, df, cv, p, mean1, mean2, np.abs(mean2 - mean1)
+
+
+#%% t-test - compare scipy to Zoi.
+# alternative='two-sided' - Not used.
+# Note that Zoi's takes alpha as a parameter and
+# it is used to calculate the critical value.  If
+# you use the critical value, you don't use p.
+# But you don't need alpha in the function. Instead
+# you can do what is done in scipy - calculate p
+# in the function and the called compares it
+# p gainst alpha.  So p and alpha are different
+# ways of doing the same thing.  This is pointed
+# out in machinelearningmastery link above.
+
+from scipy.stats.stats import ttest_ind
+
+alpha = 0.05
+
+data1 = [1, 2, 3, 4, 5, 6]
+data2 = [11, 12, 13, 14, 15, 16]
+
+ttest_res_1 = ttest(data1, data2, alpha)
+ttest_res_2 = ttest_ind(a=data1, b=data2, equal_var=False)
+
+print("Zoi  \n  t_stat: {0}\n  p: {1}".format(ttest_res_1[0], ttest_res_1[3]))
+print("scipy\n  t_stat: {0}\n  p: {1}".format(ttest_res_2[0], ttest_res_2[1]))
+
+
+# if np.isnan(p):
+#     print('Accept null hypothesis that the means are equal (not enough data).')
+# elif p > alpha:
+#     print('Accept null hypothesis that the means are equal.')
+# else:
+#     print('Reject the null hypothesis that the means are equal.')
+
+
+
+
+
+
+
+
 #%%
 # End Of File
 #
