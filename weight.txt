@@ -132,6 +132,29 @@ Date	Day	Weight	MovAvg	Fudge
 06 Oct 2021	Wed	66.9	66.9	
 07 Oct 2021	Thu	66.8	67.0	
 08 Oct 2021	Fri	67.0	67.0	
-
+09 Oct 2021	Sat	67.0	67.1	
+10 Oct 2021	Sun	66.8	67.0	
+11 Oct 2021	Mon	67.1	66.9	
+12 Oct 2021	Tue	66.8	66.9	
+13 Oct 2021	Wed	66.7	66.9	
+14 Oct 2021	Thu	66.9	66.9	
+15 Oct 2021	Fri	66.3	66.8	
+16 Oct 2021	Sat	66.7	66.8	
+17 Oct 2021	Sun	67.2	66.8	
+18 Oct 2021	Mon	67.3	66.8	
+19 Oct 2021	Tue	67.1	66.9	
+20 Oct 2021	Wed	67.2	67.0	
+21 Oct 2021	Thu	67.1	67.0	
+22 Oct 2021	Fri	67.1	67.1	
+23 Oct 2021	Sat	67.3	67.2	
+24 Oct 2021	Sun	67.3	67.2	Y
+25 Oct 2021	Mon	67.3	67.2	Y
+26 Oct 2021	Tue	67.3	67.2	Y
+27 Oct 2021	Wed	67.3	67.2	Y
+28 Oct 2021	Thu	67.3	67.3	Scales playing up
+29 Oct 2021	Fri	67.5	67.3	Y
+30 Oct 2021	Sat	67.8	67.4	
+31 Oct 2021	Sun	68.1	67.5	
+01 Nov 2021	Mon	68.2	67.6	
 
 
