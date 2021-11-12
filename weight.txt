@@ -156,5 +156,15 @@ Date	Day	Weight	MovAvg	Fudge
 30 Oct 2021	Sat	67.8	67.4	
 31 Oct 2021	Sun	68.1	67.5	
 01 Nov 2021	Mon	68.2	67.6	
-
+02 Nov 2021	Tue	68.0	67.7	Y
+03 Nov 2021	Wed	68.0	67.8	Y
+04 Nov 2021	Thu	68.0	67.9	Y
+05 Nov 2021	Fri	68.0	68.0	Y
+06 Nov 2021	Sat	68.0	68.0	Y
+07 Nov 2021	Sun	68.0	68.0	Y
+08 Nov 2021	Mon	67.9	68.0	
+09 Nov 2021	Tue	67.4	67.9	
+10 Nov 2021	Wed	67.6	67.8	
+11 Nov 2021	Thu	67.5	67.8	
+12 Nov 2021	Fri	67.4	67.7	
 
