@@ -167,4 +167,36 @@ Date	Day	Weight	MovAvg	Fudge
 10 Nov 2021	Wed	67.6	67.8	
 11 Nov 2021	Thu	67.5	67.8	
 12 Nov 2021	Fri	67.4	67.7	
+13 Nov 2021	Sat			Y
+14 Nov 2021	Sun			Y
+15 Nov 2021	Mon			Y
+16 Nov 2021	Tue			Y
+17 Nov 2021	Wed			Y
+18 Nov 2021	Thu			Y
+19 Nov 2021	Fri			Y
+20 Nov 2021	Sat			Y
+21 Nov 2021	Sun			Y
+22 Nov 2021	Mon			Y
+23 Nov 2021	Tue			Y
+24 Nov 2021	Wed			Y
+25 Nov 2021	Thu			Y
+26 Nov 2021	Fri			Y
+27 Nov 2021	Sat			Y
+28 Nov 2021	Sun			Y
+29 Nov 2021	Mon			Y
+30 Nov 2021	Tue			Y
+01 Dec 2021	Wed			Y
+02 Dec 2021	Thu			Y
+03 Dec 2021	Fri			Y
+04 Dec 2021	Sat			Y
+05 Dec 2021	Sun			Y
+06 Dec 2021	Mon			Y
+07 Dec 2021	Tue			Y
+08 Dec 2021	Wed			Y
+09 Dec 2021	Thu			Y
+10 Dec 2021	Fri			New scales (10/12/2021).  Calibration - Old: 70.2, New: 70.7
+
+
+
+
 
