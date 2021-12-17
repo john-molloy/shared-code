@@ -194,8 +194,14 @@ Date	Day	Weight	MovAvg	Fudge
 07 Dec 2021	Tue			Y
 08 Dec 2021	Wed			Y
 09 Dec 2021	Thu			Y
-10 Dec 2021	Fri			New scales (10/12/2021).  Calibration - Old: 70.2, New: 70.7
-
+10 Dec 2021	Fri	67.8	67.8	Y
+11 Dec 2021	Sat	67.9	67.8	New scales (10/12/2021).  Old: 70.2, New: 70.7
+12 Dec 2021	Sun	68.4	67.9	
+13 Dec 2021	Mon	67.8	67.9	
+14 Dec 2021	Tue	67.2	67.8	
+15 Dec 2021	Wed	67.6	67.8	
+16 Dec 2021	Thu	67.5	67.7	
+17 Dec 2021	Fri	67.0	67.6	
 
 
 
