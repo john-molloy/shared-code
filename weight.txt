@@ -204,5 +204,5 @@ Date	Day	Weight	MovAvg	Fudge
 17 Dec 2021	Fri	67.0	67.6	
 
 
-
+18/12 67.2
 
