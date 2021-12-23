@@ -209,5 +209,6 @@ Date	Day	Weight	MovAvg	Fudge
 20/12 68.3
 21/12 68.2
 22/12 67.8
+23/12 67.8
 
 
