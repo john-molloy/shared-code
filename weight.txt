@@ -223,7 +223,13 @@ Date	Day	Weight	MovAvg	Fudge
 02 Jan 2022	Sun	66.9	67.4	
 03 Jan 2022	Mon	67.6	67.5	Y
 04 Jan 2022	Tue	68.2	67.6	
-
+05 Jan 2022	Wed	68.5	67.7	
+06 Jan 2022	Thu	68.2	67.8	
+07 Jan 2022	Fri	67.9	67.8	
+08 Jan 2022	Sat	68.1	67.9	Y
+09 Jan 2022	Sun	68.2	68.1	
+10 Jan 2022	Mon	68.8	68.3	
+11 Jan 2022	Tue	68.1	68.3	
 
 
 
