@@ -232,4 +232,7 @@ Date	Day	Weight	MovAvg	Fudge
 11 Jan 2022	Tue	68.1	68.3	
 
 
+15/01/2022 68.3
+16/01/2022 68.5
+
 
